@@ -4,8 +4,9 @@ A quick intro to Helm, Kubeseal, and Encrypted secrets
 Prereqs:
 
 1. Install minikube and kubectl, the kubernetes control binary
-2. Install the sealed secrets controll onto minikube `kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.15.0/controller.yaml`
-3. Install helm 3 https://helm.sh/docs/intro/install/
+2. Install the sealed secrets controller onto minikube `kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.15.0/controller.yaml`
+3. Install the kubeseal binary.
+4. Install helm 3 https://helm.sh/docs/intro/install/
 
 Let's try making a sealed secret:
 1. First we make a secret (k8s object, manifest, whatever) file, but we don't put this secret in the cluster.
