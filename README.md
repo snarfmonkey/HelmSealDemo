@@ -17,15 +17,21 @@ Let's try making a sealed secret:
 3. We could apply this secret to the cluster with `kubectl apply -f sealed-foo-secret.yaml` but we want to get fancier!
    `cat sealed-foo-secret.yaml` to get
 ```
-apiVersion: v1
-data:
-  supersecretfile_1: dGhlIGNvbnRlbnRzIG9mIHRoaXMgZmlsZSBhcmUgdmVyeSBzZW5zaXRpdmUuIGRvbid0IGxlYXZlIHRoZW0gaW4gZ2l0IGxpa2UgSSBhbSBkb2luZyE=
-  supersecretfile_2: dGhpcyBmaWxlLCB0b28hIQ==
-kind: Secret
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
 metadata:
   creationTimestamp: null
   name: foo-secret
-  namespace: default
+  namespace: staging
+spec:
+  encryptedData:
+    supersecrefile_1: AgAXXoEKUWWQTYDfsVgObS/WAsinEtGXghqG0wR/7Le2QO8QwRmp9IL5FJ4CQnuz+ZWo8NpH0weMfkpXAlQLrq6tZLrzMBmQGui+evwjXEnyFQxOVvK1bXzweHhHDeoJHltI0TY0/ZbfkyCHolDlNT/SAF32gIcMlUbwAgsEEthfeEqV6aqE7sNW+e2rTCSG8L3aIOiwlrsrSjCAzTT/tTlKLMsPHHiDTTApSk3bhqA2JLcMyS/5VLft2y2wAw7TeUDh7Zb2pQntbnIKwOCXsJj6AmJgvtNBuZnkMfcgLRF3kPc1bEBSX4fvWTOKAR30yRaaA4cNAVvCq0j6+xK4lni64alquZR+yU83FX1LlFgA61jW9kh+UV+K02dsUP0NAuNMG1Nd0Xd1mS/5K0rmbeO6K3lnkuK0tLP7LY7f/CIJHMD7IYh9Wniih5Ai8phfvCupS/On6Mq2RihZzjbhPepDgBxLeX5uQfvuycwJGvPhTe+Apu0NLaeKejYlR2BFCSDGyaPHRS6gTKqLwCnrJRknQCEu58rnFJ49wlWwEdHWejR3//oxz0bE0/c2s9TZTTYrTXKpaXEnm/2/xQUkol7xX+YWVNWenHzlM257dl5keL/nITNg1YAiYM913/xFmAjJtIlDFLSFFpwunG17VdgbaCXUaeaQq445wJa0VyerwErC6GOhBZMWYSyT98NZHhTw3hxtLNQ6sbeeBnnsPGw2ocerLBG5u/kp74DWM7RVr2cUj/Aivv3ZYucjNw/kKt8flQ==
+    supersecretfile_2: AgAXXoEKUWWQTYDfsVgObS/WAsinEtGXghqG0wR/7Le2QO8QwRmp9IL5FJ4CQnuz+ZWo8NpH0weMfkpXAlQLrq6tZLrzMBmQGui+evwjXEnyFQxOVvK1bXzweHhHDeoJHltI0TY0/ZbfkyCHolDlNT/SAF32gIcMlUbwAgsEEthfeEqV6aqE7sNW+e2rTCSG8L3aIOiwlrsrSjCAzTT/tTlKLMsPHHiDTTApSk3bhqA2JLcMyS/5VLft2y2wAw7TeUDh7Zb2pQntbnIKwOCXsJj6AmJgvtNBuZnkMfcgLRF3kPc1bEBSX4fvWTOKAR30yRaaA4cNAVvCq0j6+xK4lni64alquZR+yU83FX1LlFgA61jW9kh+UV+K02dsUP0NAuNMG1Nd0Xd1mS/5K0rmbeO6K3lnkuK0tLP7LY7f/CIJHMD7IYh9Wniih5Ai8phfvCupS/On6Mq2RihZzjbhPepDgBxLeX5uQfvuycwJGvPhTe+Apu0NLaeKejYlR2BFCSDGyaPHRS6gTKqLwCnrJRknQCEu58rnFJ49wlWwEdHWejR3//oxz0bE0/c2s9TZTTYrTXKpaXEnm/2/xQUkol7xX+YWVNWenHzlM257dl5keL/nITNg1YAiYM913/xFmAjJtIlDFLSFFpwunG17VdgbaCXUaeaQq445wJa0VyerwErC6GOhBZMWYSyT98NZHhTw3hxtLNQ6sbeeBnnsPGw2ocerLBG5u/kp74DWM7RVr2cUj/Aivv3ZYucjNw/kKt8flQ==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: foo-secret
+      namespace: staging
 ```
 4. Copy and paste the supersecretfile_1: and supersecretfile_2: lines into ./values.yaml with a 2 space indent, right under `sealedSecrets`
    so it looks like
